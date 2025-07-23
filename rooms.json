@@ -677,6 +677,11 @@
                         "params": [
                             "befriended_dragon"
                         ]
+                    },
+                    {
+                        "text": "You have found the companionship of the dragon to be your ultimate reward.",
+                        "method": "gameWon",
+                        "params": []
                     }
                 ]
             },

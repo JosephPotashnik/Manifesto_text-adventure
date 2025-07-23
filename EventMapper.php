@@ -30,6 +30,8 @@ class EventMapper
             "doesNotHaveInventoryItem"  => $map[$playerClassName],
             "hasInventoryItem"          => $map[$playerClassName],
             "moveToRoom"                => $map[$gameClassName],
+            "gameWon"                   => $map[$gameClassName], //congrats!
+            "gameLost"                  => $map[$gameClassName] //sudden death, etc.
         ];
     }
 }

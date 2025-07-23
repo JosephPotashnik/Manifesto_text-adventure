@@ -68,6 +68,8 @@ class Game
     /** @var Room[] */
     private array $rooms = [];
     private State $state;
+    private bool $gameOver;
+
 
     /**
      * Get the current room the player is in
@@ -98,6 +100,7 @@ class Game
     {
         $this->player = $player;
         $this->loadFromJsonFile();
+        $this->gameOver = false;
     }
 
     /**
@@ -173,6 +176,27 @@ class Game
     }   
 
     /**
+     * The game ended - a winning outcome achieved.
+     * 
+     * @param int $roomId The ID of the room to move to
+     * @return void
+     */
+    public function gameWon(): void
+    {
+        $this->gameOver = true;
+    }  
+
+    /**
+     * The game ended - the player lost
+     * 
+     * @return void
+     */
+    public function gameLost(): void
+    {
+        $this->gameOver = true;
+    }  
+
+    /**
      * Start the game loop and handle player interactions
      * 
      * @return void
@@ -182,7 +206,7 @@ class Game
         $this->state = new State($this->player, 1); //assumption: the index of the first room is 1.
         echo "You have " . $this->player->getHearts() . " hearts remaining.\n";
 
-        while ($this->player->getHearts() > 0) 
+        while ($this->player->getHearts() > 0 && $this->gameOver == false) 
         {
             $currentRoom = $this->getCurrentRoom();
             // validation check for current room, beyond the scope of this home test, but noted here for completeness.
@@ -207,10 +231,12 @@ class Game
                 $outcome->execute();
 
                 if ($this->player->getHearts() <= 0) {
-                    echo "You have no hearts left. Game over.\n";
+                    echo "You have no hearts left.\n";
                     break;
                 }
             }
         }
+
+        echo "\033[32mGame over!\033[0m\n";
     }
 }
