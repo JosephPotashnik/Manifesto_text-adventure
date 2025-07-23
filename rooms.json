@@ -1,0 +1,699 @@
+[
+    {
+        "id": 1,
+        "flavorText": "You stand before the imposing gates of an ancient castle. The iron gates creak in the wind, and you notice a rusty key lying on the ground nearby.",
+        "connections": [
+            2
+        ],
+        "choices": [
+            {
+                "text": "Pick up the rusty key",
+                "isDisplayedMethod": "doesNotHaveDecision",
+                "params": [
+                    "took_key"
+                ],
+                "outcomes": [
+                    {
+                        "text": "You pick up the rusty key and slip it into your pocket.",
+                        "method": "addInventoryItem",
+                        "params": [
+                            "rusty_key"
+                        ]
+                    },
+                    {
+                        "text": "",
+                        "method": "addDecision",
+                        "params": [
+                            "took_key"
+                        ]
+                    }
+                ]
+            },
+            {
+                "text": "Enter the castle courtyard",
+                "isDisplayedMethod": "",
+                "params": [],
+                "outcomes": [
+                    {
+                        "text": "You push through the gates and enter the castle courtyard.",
+                        "method": "moveToRoom",
+                        "params": [
+                            2
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "flavorText": "You're in a cobblestone courtyard surrounded by towering walls. To your left is a guard tower, to your right is a chapel, and ahead lies the main castle entrance.",
+        "connections": [
+            1,
+            3,
+            4,
+            5
+        ],
+        "choices": [
+            {
+                "text": "Climb the guard tower",
+                "isDisplayedMethod": "",
+                "params": [],
+                "outcomes": [
+                    {
+                        "text": "You climb the narrow stairs to the guard tower.",
+                        "method": "moveToRoom",
+                        "params": [
+                            3
+                        ]
+                    }
+                ]
+            },
+            {
+                "text": "Enter the chapel",
+                "isDisplayedMethod": "",
+                "params": [],
+                "outcomes": [
+                    {
+                        "text": "You push open the heavy chapel doors.",
+                        "method": "moveToRoom",
+                        "params": [
+                            4
+                        ]
+                    }
+                ]
+            },
+            {
+                "text": "Go to the main castle entrance",
+                "isDisplayedMethod": "",
+                "params": [],
+                "outcomes": [
+                    {
+                        "text": "You approach the main castle entrance.",
+                        "method": "moveToRoom",
+                        "params": [
+                            5
+                        ]
+                    }
+                ]
+            },
+            {
+                "text": "Return to the castle gates",
+                "isDisplayedMethod": "",
+                "params": [],
+                "outcomes": [
+                    {
+                        "text": "You return to where you started.",
+                        "method": "moveToRoom",
+                        "params": [
+                            1
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "flavorText": "At the top of the guard tower, you have a commanding view of the castle grounds. You notice a bow and quiver of arrows left behind by a long-gone guard. There's also a suspicious crack in the eastern wall.",
+        "connections": [
+            2,
+            6
+        ],
+        "choices": [
+            {
+                "text": "Take the bow and arrows",
+                "isDisplayedMethod": "doesNotHaveInventoryItem",
+                "params": [
+                    "bow"
+                ],
+                "outcomes": [
+                    {
+                        "text": "You equip the bow and sling the quiver over your shoulder.",
+                        "method": "addInventoryItem",
+                        "params": [
+                            "bow"
+                        ]
+                    },
+                    {
+                        "text": "",
+                        "method": "addDecision",
+                        "params": [
+                            "armed_with_bow"
+                        ]
+                    }
+                ]
+            },
+            {
+                "text": "Investigate the crack in the wall",
+                "isDisplayedMethod": "",
+                "params": [],
+                "outcomes": [
+                    {
+                        "text": "You discover the crack leads to a secret passage!",
+                        "method": "moveToRoom",
+                        "params": [
+                            6
+                        ]
+                    }
+                ]
+            },
+            {
+                "text": "Return to the courtyard",
+                "isDisplayedMethod": "",
+                "params": [],
+                "outcomes": [
+                    {
+                        "text": "You climb back down to the courtyard.",
+                        "method": "moveToRoom",
+                        "params": [
+                            2
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "flavorText": "The chapel is dimly lit by colored light filtering through stained glass windows. An ornate altar stands at the far end, and you notice a healing potion glowing softly on a side table.",
+        "connections": [
+            2,
+            7
+        ],
+        "choices": [
+            {
+                "text": "Take the healing potion",
+                "isDisplayedMethod": "doesNotHaveInventoryItem",
+                "params": [
+                    "healing_potion"
+                ],
+                "outcomes": [
+                    {
+                        "text": "You carefully take the glowing healing potion.",
+                        "method": "addInventoryItem",
+                        "params": [
+                            "healing_potion"
+                        ]
+                    }
+                ]
+            },
+            {
+                "text": "Pray at the altar",
+                "isDisplayedMethod": "doesNotHaveDecision",
+                "params": [
+                    "prayed_at_altar"
+                ],
+                "outcomes": [
+                    {
+                        "text": "As you kneel and pray, you feel renewed strength flow through you.",
+                        "method": "addHearts",
+                        "params": [
+                            2
+                        ]
+                    },
+                    {
+                        "text": "Your prayers reveal a hidden passage behind the altar.",
+                        "method": "addDecision",
+                        "params": [
+                            "prayed_at_altar"
+                        ]
+                    }
+                ]
+            },
+            {
+                "text": "Enter the passage behind the altar",
+                "isDisplayedMethod": "hasDecision",
+                "params": [
+                    "prayed_at_altar"
+                ],
+                "outcomes": [
+                    {
+                        "text": "You slip through the revealed passage.",
+                        "method": "moveToRoom",
+                        "params": [
+                            7
+                        ]
+                    }
+                ]
+            },
+            {
+                "text": "Return to the courtyard",
+                "isDisplayedMethod": "",
+                "params": [],
+                "outcomes": [
+                    {
+                        "text": "You leave the peaceful chapel.",
+                        "method": "moveToRoom",
+                        "params": [
+                            2
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "flavorText": "You stand before massive oak doors reinforced with iron bands. The doors are locked, and you notice a keyhole that looks like it might fit the rusty key you found. There's also a side passage that appears to lead to the castle dungeons.",
+        "connections": [
+            2,
+            8,
+            9
+        ],
+        "choices": [
+            {
+                "text": "Use the rusty key on the main doors",
+                "isDisplayedMethod": "hasInventoryItem",
+                "params": [
+                    "rusty_key"
+                ],
+                "outcomes": [
+                    {
+                        "text": "The key turns with a satisfying click, and the doors swing open.",
+                        "method": "removeInventoryItem",
+                        "params": [
+                            "rusty_key"
+                        ]
+                    },
+                    {
+                        "text": "You enter the great hall of the castle.",
+                        "method": "moveToRoom",
+                        "params": [
+                            8
+                        ]
+                    }
+                ]
+            },
+            {
+                "text": "Explore the dungeon passage",
+                "isDisplayedMethod": "",
+                "params": [],
+                "outcomes": [
+                    {
+                        "text": "You descend into the dark dungeons below.",
+                        "method": "moveToRoom",
+                        "params": [
+                            9
+                        ]
+                    }
+                ]
+            },
+            {
+                "text": "Return to the courtyard",
+                "isDisplayedMethod": "",
+                "params": [],
+                "outcomes": [
+                    {
+                        "text": "You step back into the courtyard.",
+                        "method": "moveToRoom",
+                        "params": [
+                            2
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "flavorText": "This narrow secret passage is filled with cobwebs and dust. Ancient torches line the walls, and you can hear the scurrying of small creatures. The passage leads deeper into the castle's hidden areas.",
+        "connections": [
+            3,
+            10
+        ],
+        "choices": [
+            {
+                "text": "Light a torch and continue deeper",
+                "isDisplayedMethod": "",
+                "params": [],
+                "outcomes": [
+                    {
+                        "text": "You light a torch and venture deeper into the passage.",
+                        "method": "moveToRoom",
+                        "params": [
+                            10
+                        ]
+                    }
+                ]
+            },
+            {
+                "text": "Return to the guard tower",
+                "isDisplayedMethod": "",
+                "params": [],
+                "outcomes": [
+                    {
+                        "text": "You carefully make your way back to the guard tower.",
+                        "method": "moveToRoom",
+                        "params": [
+                            3
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "flavorText": "Behind the altar, you discover a hidden chamber containing ancient relics and religious artifacts. A golden chalice sits on a pedestal, emanating a warm, holy light. However, you also notice skeletal remains suggesting this place has guardians.",
+        "connections": [
+            4
+        ],
+        "choices": [
+            {
+                "text": "Take the golden chalice",
+                "isDisplayedMethod": "doesNotHaveDecision",
+                "params": [
+                    "awakened_guardians"
+                ],
+                "outcomes": [
+                    {
+                        "text": "As you reach for the chalice, skeletal guardians rise from the shadows!",
+                        "method": "addDecision",
+                        "params": [
+                            "awakened_guardians"
+                        ]
+                    },
+                    {
+                        "text": "You must defend yourself!",
+                        "method": "addHearts",
+                        "params": [
+                            -1
+                        ]
+                    }
+                ]
+            },
+            {
+                "text": "Fight the guardians with your bow",
+                "isDisplayedMethod": "hasInventoryItem",
+                "params": [
+                    "bow"
+                ],
+                "outcomes": [
+                    {
+                        "text": "Your arrows find their mark, destroying the skeletal guardians!",
+                        "method": "addInventoryItem",
+                        "params": [
+                            "golden_chalice"
+                        ]
+                    },
+                    {
+                        "text": "You successfully claim the golden chalice.",
+                        "method": "addDecision",
+                        "params": [
+                            "defeated_guardians"
+                        ]
+                    }
+                ]
+            },
+            {
+                "text": "Retreat to the chapel",
+                "isDisplayedMethod": "",
+                "params": [],
+                "outcomes": [
+                    {
+                        "text": "You quickly retreat to the safety of the chapel.",
+                        "method": "moveToRoom",
+                        "params": [
+                            4
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "flavorText": "You stand in the magnificent great hall of the castle. A grand staircase leads to the upper floors, and tapestries depicting ancient battles line the walls. A feast table still holds rotting food, suggesting the castle was abandoned suddenly.",
+        "connections": [
+            5
+        ],
+        "choices": [
+            {
+                "text": "Examine the tapestries",
+                "isDisplayedMethod": "doesNotHaveDecision",
+                "params": [
+                    "learned_treasure_location"
+                ],
+                "outcomes": [
+                    {
+                        "text": "The tapestries tell the story of a great battle and reveal the location of a hidden treasure.",
+                        "method": "addDecision",
+                        "params": [
+                            "learned_treasure_location"
+                        ]
+                    }
+                ]
+            },
+            {
+                "text": "Search the feast table",
+                "isDisplayedMethod": "doesNotHaveInventoryItem",
+                "params": [
+                    "silver_dagger"
+                ],
+                "outcomes": [
+                    {
+                        "text": "Among the rotting food, you find a silver dagger still sharp and gleaming.",
+                        "method": "addInventoryItem",
+                        "params": [
+                            "silver_dagger"
+                        ]
+                    }
+                ]
+            },
+            {
+                "text": "Return to the main entrance",
+                "isDisplayedMethod": "",
+                "params": [],
+                "outcomes": [
+                    {
+                        "text": "You return to the main castle entrance.",
+                        "method": "moveToRoom",
+                        "params": [
+                            5
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "flavorText": "The dungeons are damp and cold, with rusty prison bars and chains hanging from the walls. You hear a weak voice calling for help from one of the cells. The air is thick with despair, and you lose heart just being here.",
+        "connections": [
+            5
+        ],
+        "choices": [
+            {
+                "text": "Investigate the voice calling for help",
+                "isDisplayedMethod": "doesNotHaveDecision",
+                "params": [
+                    "found_prisoner"
+                ],
+                "outcomes": [
+                    {
+                        "text": "You find a prisoner who has been trapped here for years!",
+                        "method": "addDecision",
+                        "params": [
+                            "found_prisoner"
+                        ]
+                    },
+                    {
+                        "text": "The sight of his suffering weighs on your heart.",
+                        "method": "addHearts",
+                        "params": [
+                            -1
+                        ]
+                    }
+                ]
+            },
+            {
+                "text": "Free the prisoner with your silver dagger",
+                "isDisplayedMethod": "hasInventoryItem",
+                "params": [
+                    "silver_dagger"
+                ],
+                "outcomes": [
+                    {
+                        "text": "You use your dagger to pick the lock and free the grateful prisoner!",
+                        "method": "addHearts",
+                        "params": [
+                            1
+                        ]
+                    },
+                    {
+                        "text": "The prisoner gives you a magical amulet as thanks.",
+                        "method": "addInventoryItem",
+                        "params": [
+                            "magic_amulet"
+                        ]
+                    },
+                    {
+                        "text": "",
+                        "method": "addDecision",
+                        "params": [
+                            "freed_prisoner"
+                        ]
+                    }
+                ]
+            },
+            {
+                "text": "Use the healing potion on the prisoner",
+                "isDisplayedMethod": "hasInventoryItem",
+                "params": [
+                    "healing_potion"
+                ],
+                "outcomes": [
+                    {
+                        "text": "You give the healing potion to the suffering prisoner.",
+                        "method": "removeInventoryItem",
+                        "params": [
+                            "healing_potion"
+                        ]
+                    },
+                    {
+                        "text": "His strength returns, and he blesses you with renewed vigor.",
+                        "method": "addHearts",
+                        "params": [
+                            3
+                        ]
+                    },
+                    {
+                        "text": "",
+                        "method": "addDecision",
+                        "params": [
+                            "healed_prisoner"
+                        ]
+                    }
+                ]
+            },
+            {
+                "text": "Leave the dungeons",
+                "isDisplayedMethod": "",
+                "params": [],
+                "outcomes": [
+                    {
+                        "text": "You escape the oppressive atmosphere of the dungeons.",
+                        "method": "moveToRoom",
+                        "params": [
+                            5
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "flavorText": "At the end of the secret passage, you discover a magnificent treasure chamber! Gold coins, precious gems, and magical artifacts fill the room. However, a fearsome dragon sleeps atop the largest pile of treasure.",
+        "connections": [
+            6
+        ],
+        "choices": [
+            {
+                "text": "Sneak past the dragon and take some gold",
+                "isDisplayedMethod": "doesNotHaveDecision",
+                "params": [
+                    "awakened_dragon"
+                ],
+                "outcomes": [
+                    {
+                        "text": "You carefully sneak around the sleeping dragon.",
+                        "method": "addInventoryItem",
+                        "params": [
+                            "gold_coins"
+                        ]
+                    },
+                    {
+                        "text": "But your movement awakens the beast! It breathes fire at you!",
+                        "method": "addHearts",
+                        "params": [
+                            -2
+                        ]
+                    },
+                    {
+                        "text": "",
+                        "method": "addDecision",
+                        "params": [
+                            "awakened_dragon"
+                        ]
+                    }
+                ]
+            },
+            {
+                "text": "Fight the dragon with your bow",
+                "isDisplayedMethod": "hasInventoryItem",
+                "params": [
+                    "bow"
+                ],
+                "outcomes": [
+                    {
+                        "text": "Your arrows pierce the dragon's scales! After a fierce battle, you emerge victorious!",
+                        "method": "addHearts",
+                        "params": [
+                            -1
+                        ]
+                    },
+                    {
+                        "text": "You claim the dragon's greatest treasure - a magical crown!",
+                        "method": "addInventoryItem",
+                        "params": [
+                            "dragon_crown"
+                        ]
+                    },
+                    {
+                        "text": "",
+                        "method": "addDecision",
+                        "params": [
+                            "defeated_dragon"
+                        ]
+                    }
+                ]
+            },
+            {
+                "text": "Use the golden chalice to pacify the dragon",
+                "isDisplayedMethod": "hasInventoryItem",
+                "params": [
+                    "golden_chalice"
+                ],
+                "outcomes": [
+                    {
+                        "text": "The holy light from the chalice calms the dragon's rage.",
+                        "method": "addHearts",
+                        "params": [
+                            2
+                        ]
+                    },
+                    {
+                        "text": "The grateful dragon allows you to take a magical orb from its hoard.",
+                        "method": "addInventoryItem",
+                        "params": [
+                            "dragon_orb"
+                        ]
+                    },
+                    {
+                        "text": "",
+                        "method": "addDecision",
+                        "params": [
+                            "befriended_dragon"
+                        ]
+                    }
+                ]
+            },
+            {
+                "text": "Retreat through the secret passage",
+                "isDisplayedMethod": "",
+                "params": [],
+                "outcomes": [
+                    {
+                        "text": "You quietly retreat before the dragon fully awakens.",
+                        "method": "moveToRoom",
+                        "params": [
+                            6
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
