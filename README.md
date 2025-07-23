@@ -11,6 +11,10 @@ php main.php
 
 ---
 
+## Developer Note
+
+I had no prior experience with PHP before this challenge. However, as a seasoned C# developer, I found that the syntactic and structural similarities—especially with PHP’s latest typed features—allowed me to quickly bridge the gap. With some focused exploration, I was able to gain the necessary understanding to tackle this challenge effectively
+
 ## General Approach
 
 The central principle guiding this implementation was **clean separation between game logic and game content**. That is, no hardcoded rooms, inventory items, decisions, or outcomes are embedded in the engine. Instead, the engine consumes external content (e.g., a JSON file) and drives the game accordingly.
