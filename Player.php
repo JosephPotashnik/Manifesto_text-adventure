@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Represents a player in the text adventure game
+ */
 class Player
 {
     public string $name;
@@ -8,6 +11,12 @@ class Player
     private array $decisions = []; // to store decisions made by the player
     private array $inventory = []; // to store items in the player's inventory
     
+    /**
+     * Initialize a new player
+     * 
+     * @param string $name The player's name
+     * @param int $hearts The initial number of hearts (default: INITIAL_HEARTS)
+     */
     public function __construct(string $name, int $hearts = self::INITIAL_HEARTS)
     {
         $this->name = $name;
@@ -40,6 +49,13 @@ class Player
         return $this->hearts;
     }
 
+    /**
+     * Add a decision to the player's decision history
+     * 
+     * @param string $decision The decision to add
+     * @return void
+     * @throws InvalidArgumentException If the decision already exists
+     */
     public function addDecision(string $decision): void
     {
         if (!in_array($decision, $this->decisions, true)) {
@@ -49,19 +65,37 @@ class Player
         {
             throw new InvalidArgumentException("Decision '$decision' already exists.");
         }
-
     }
+
+    /**
+     * Check if the player does not have a specific decision
+     * 
+     * @param string $decision The decision to check
+     * @return bool True if the player does not have the decision, false otherwise
+     */
     public function doesNotHaveDecision(string $decision): bool 
     {
         return !$this->hasDecision($decision);
     }
 
-
+    /**
+     * Check if the player has made a specific decision
+     * 
+     * @param string $decision The decision to check
+     * @return bool True if the player has the decision, false otherwise
+     */
     public function hasDecision(string $decision): bool
     {
         return in_array($decision, $this->decisions, true);
     }
 
+    /**
+     * Add multiple decisions to the player's decision history
+     * 
+     * @param array $decisions Array of decisions to add
+     * @return void
+     * @throws InvalidArgumentException If any decision already exists
+     */
     public function addDecisions(array $decisions): void
     {
         foreach ($decisions as $decision) {
@@ -75,6 +109,13 @@ class Player
         }
     }
 
+    /**
+     * Add an item to the player's inventory
+     * 
+     * @param string $itemName The name of the item to add
+     * @return void
+     * @throws InvalidArgumentException If the item already exists in inventory
+     */
     public function addInventoryItem(string $itemName): void
     {
         if (!in_array($itemName, $this->inventory, true)) {
@@ -86,6 +127,13 @@ class Player
         }
     }
 
+    /**
+     * Remove an item from the player's inventory
+     * 
+     * @param string $itemName The name of the item to remove
+     * @return void
+     * @throws InvalidArgumentException If the item is not found in inventory
+     */
     public function removeInventoryItem(string $itemName): void
     {
         $key = array_search($itemName, $this->inventory, true);
@@ -97,16 +145,33 @@ class Player
         }
     }
 
+    /**
+     * Check if the player does not have a specific inventory item
+     * 
+     * @param string $itemName The name of the item to check
+     * @return bool True if the player does not have the item, false otherwise
+     */
     public function doesNotHaveInventoryItem(string $itemName): bool 
     {
         return !$this->hasInventoryItem($itemName);
     }
     
+    /**
+     * Check if the player has a specific inventory item
+     * 
+     * @param string $itemName The name of the item to check
+     * @return bool True if the player has the item, false otherwise
+     */
     public function hasInventoryItem(string $itemName): bool
     {
         return in_array($itemName, $this->inventory, true);
     }
 
+    /**
+     * Get all decisions made by the player
+     * 
+     * @return array Array of all player decisions
+     */
     public function getDecisions(): array
     {
         return $this->decisions;

@@ -1,10 +1,18 @@
 <?php
 
+/**
+ * Maps method names to their target objects for dynamic method calls
+ */
 class EventMapper
 {
     /** @var array<string, Player|Game> */
     public array $MapMethodNamesToTargets;
 
+    /**
+     * Initialize the event mapper with target objects
+     * 
+     * @param array $map Array mapping class names to their instances
+     */
     public function __construct(array $map)
     {
         // These need to be static methods on the classes Player and Game

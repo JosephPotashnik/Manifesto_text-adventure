@@ -2,6 +2,9 @@
 
 require_once 'Choice.php';
 
+/**
+ * Represents a room in the text adventure game
+ */
 class Room implements JsonSerializable
 {
     public int $id;
@@ -14,6 +17,14 @@ class Room implements JsonSerializable
     //the connections to other rooms (ids of the other rooms)
     //note: connection is a directed edge, so if room A connects to room B, it does not mean that room B connects to room A
 
+    /**
+     * Initialize a new room
+     * 
+     * @param int $id The unique identifier for this room
+     * @param string $flavorText The descriptive text shown when entering the room
+     * @param array $connections Array of room IDs that this room connects to
+     * @param array $choices Array of Choice objects available in this room
+     */
     public function __construct(int $id, string $flavorText, array $connections = [], array $choices = [])
     {
         $this->id = $id;
@@ -23,7 +34,11 @@ class Room implements JsonSerializable
         $this->choices = $choices;
     }
 
-    // Implement JsonSerializable interface
+    /**
+     * Serialize the room to an array for JSON encoding
+     * 
+     * @return array The serialized room data
+     */
     public function jsonSerialize(): array
     {
         return [
@@ -36,7 +51,12 @@ class Room implements JsonSerializable
         ];
     }
 
-    // Create Room from array (for deserialization)
+    /**
+     * Create a Room instance from array data
+     * 
+     * @param array $data The array data to deserialize
+     * @return Room The created Room instance
+     */
     public static function fromArray(array $data): Room
     {
         //assumption: the array contains 'id', 'flavorText', 'connections'
@@ -51,11 +71,16 @@ class Room implements JsonSerializable
         );
     }
 
+    /**
+     * Get filtered choices based on player conditions
+     * 
+     * @param array $conditions Array of player conditions (currently unused but kept for interface compatibility)
+     * @return array Array of Choice objects that should be displayed to the player
+     */
     public function getChoices(array $conditions): array
     {
         $filteredChoices = [];
         foreach ($this->choices as $choice) {
-
             $isDisplayed = $choice->getIsDisplayedMethod();
             if ($isDisplayed == null || $isDisplayed == '') {
                 //if the isDisplayedMethod is null or empty, it means that the choice is always displayed
@@ -63,7 +88,7 @@ class Room implements JsonSerializable
                 continue;
             }
             else {
-                $result  = $choice->executeDisplayChoice();
+                $result = $choice->executeDisplayChoice();
                 if ($result) {
                     $filteredChoices[] = $choice;
                 }
