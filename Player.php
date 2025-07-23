@@ -32,12 +32,12 @@ class Player
     {
         $this->hearts += $hearts;
         if ($hearts < 0) {
-           echo "You lost " . abs($hearts) . " hearts. ";
+           echo "\033[32mYou lost " . abs($hearts) . " hearts. ";
         }
         else {
-           echo "You gained " . $hearts . " hearts. ";
+           echo "\033[32mYou gained " . $hearts . " hearts. ";
         }
-        echo "You now have " . $this->hearts . " hearts left.\n";
+        echo "You now have " . $this->hearts . " hearts left.\033[0m\n";
     }
 
     /**
@@ -120,7 +120,7 @@ class Player
     {
         if (!in_array($itemName, $this->inventory, true)) {
             $this->inventory[] = $itemName;
-        } 
+            echo "\033[32mYou acquired " . $itemName . "\033[0m\n";        } 
         else
         {
             throw new InvalidArgumentException("Item '$itemName' already exists in inventory.");
