@@ -98,6 +98,7 @@ Game designers use method names in JSON to specify:
   More complex logic (like `hasItem('bow') && !hasDecision('defeated_dragon')`) is not yet supported.  
   This would require **composable predicates** (likely represented as a binary tree of logical operations).  
   Right now, such cases may cause game-breaking contradictions (e.g., fighting a boss multiple times).
+- **Room Flavour text changes**: Currently, room flavour text is unconditional. If it describes transitory elements such as inventory or what happens before a decision which takes place in it, it might become irrelevant. Can be adapted in the same way that Choices are displayed. Game designers can be careful not to include conditional elements in the room's flavour text but I leave it here as it is beyond the scope of the exercise.
 
 ---
 
